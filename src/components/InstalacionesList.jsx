@@ -12,7 +12,13 @@ const InstalacionesList = () => {
         const peticion = async () => {
             try {
                 const response = await api.get('/instalacion');
-                setInstalaciones(response.data);
+                const corregidoOid = response.data.map(item => {
+                    return {
+                        ...item,
+                        _id: item._id.$oid
+                    };
+                });
+                setInstalaciones(corregidoOid);
             } catch (err) {
                 // setError('No se puede completar la operación');
                 navigate('/login')
@@ -35,16 +41,16 @@ const InstalacionesList = () => {
                 </thead>
                 <tbody>
                     {instalaciones.map((instalacion) => (
-                        <tr key={instalacion.id}>
-                            <td>{instalacion.id}</td>
+                        <tr key={instalacion._id}>
+                            <td>{instalacion._id}</td>
                             <td>{instalacion.nombre}</td>
                             <td>
-                                <Button as={Link} to={`/instalacion/edit/${instalacion.id}`} className="btn-success">
+                                <Button as={Link} to={`/instalacion/edit/${instalacion._id}`} className="btn-success">
                                     Editar
                                 </Button>
                             </td>                            
                             <td>
-                                <Button as={Link} to={`/instalacion/del/${instalacion.id}`} className="btn-danger">
+                                <Button as={Link} to={`/instalacion/del/${instalacion._id}`} className="btn-danger">
                                     Eliminar
                                 </Button>
                             </td>

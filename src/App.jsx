@@ -34,11 +34,11 @@ const router = createBrowserRouter([
         element: <InstalacionFormPage />,
       },
       {
-        path: "instalacion/edit/:id",
+        path: "instalacion/edit/:_id",
         element: <InstalacionFormPage />,
       },
       {
-        path: "instalacion/del/:id",
+        path: "instalacion/del/:_id",
         element: <InstalacionDeletePage />,
       },
       {

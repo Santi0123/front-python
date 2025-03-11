@@ -22,8 +22,9 @@ function NavBar() {
     if (isLogged) {
       const peticion = async () => {
         try {
-            const response = await api.get('/usuario');
-            setTipoUsuario(response.data.tipo);
+            // const response = await api.get('/usuario');
+            // setTipoUsuario(response.data.tipo);
+            setTipoUsuario('ADMIN');
         } catch (err) {
             // setError('No se puede completar la operación');
             navigate('/login')

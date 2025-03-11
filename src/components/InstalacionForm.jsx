@@ -5,7 +5,7 @@ import api from "../services/api"
 
 const InstalacionForm = () =>{
 
-    let { id } = useParams();
+    let { _id } = useParams();
 
     // const [id, setId] = useState('');
     const [nombre, setNombre] = useState('');
@@ -23,9 +23,9 @@ const InstalacionForm = () =>{
     const manejaForm = async(event) => {
         event.preventDefault();
         try {
-            const response = await api.post('/admin/instalacion', { id, nombre });
+            const response = await api.post('/instalacion', { _id, nombre });
             /*
-            setId(response.data.id);
+            setId(response.data._id);
             setNombre(response.data.nombre);
             */
             console.log(response);
@@ -39,9 +39,9 @@ const InstalacionForm = () =>{
     const deleteForm = async(event) => {
         event.preventDefault();
         try {
-            const response = await api.delete('/admin/instalacion/'+id, { id, nombre });
+            const response = await api.delete('/instalacion/'+ _id, { _id, nombre });
             /*
-            setId(response.data.id);
+            setId(response.data._id);
             setNombre(response.data.nombre);
             */
             console.log(response);
@@ -59,9 +59,12 @@ const InstalacionForm = () =>{
 
     useEffect( ()=>{
         const peticion = async () => {
-            if (!isNaN(id))
+            console.log("---===================-----")
+            console.log(_id)
+            //if (!isNaN(_id))
                 try {
-                    const response = await api.get('/instalacion/'+id);
+                    const response = await api.get('/instalacion/'+_id);
+                    console.log(response);
                     setNombre(response.data.nombre);                    
                 } catch (err) {
                     setError('No se puede completar la operación');
@@ -82,7 +85,7 @@ const InstalacionForm = () =>{
                     placeholder="ID de Instalación"
                     aria-label="Identificador de la instalación"                    
                     disabled
-                    value={id}
+                    value={_id}
                 />
             </Form.Group>
             <Form.Group className="mb-3">

@@ -17,8 +17,8 @@ const Login = () => {
         event.preventDefault();
         setError('');
         try {
-            const response = await api.post('/auth/login', { username, password });
-            setToken(response.data.jwt);
+            const response = await api.post('/login', { username, password });
+            setToken(response.data.access_token);
             navigate('/');
         } catch (err) {
             console.log(err);
