@@ -91,8 +91,10 @@ const HorariosForm = () => {
             }
 
             const horarioData = {
-                hora_fin: timeToISO(horaFin),
-                hora_inicio: timeToISO(horaInicio),
+                /*hora_fin: timeToISO(horaFin),
+                hora_inicio: timeToISO(horaInicio),*/
+                hora_fin: horaFin.toString(),
+                hora_inicio: horaInicio.toString(),
                 instalacion: instalacionSeleccionada
             }
 
@@ -162,7 +164,7 @@ const HorariosForm = () => {
                     <Form.Label>Hora Inicio</Form.Label>
                     <Form.Control
                         type="time"
-                        //step="300"  // Intervalos de 5 minutos
+                        step="300"  // Intervalos de 5 minutos
                         value={horaInicio}
                         onChange={(e) => setHoraInicio(e.target.value)}
                         disabled={getActionType() === "delete"}
@@ -174,7 +176,7 @@ const HorariosForm = () => {
                     <Form.Label>Hora Fin</Form.Label>
                     <Form.Control
                         type="time"
-                        //step="300"
+                        step="300"
                         value={horaFin}
                         onChange={(e) => setHoraFin(e.target.value)}
                         disabled={getActionType() === "delete"}
